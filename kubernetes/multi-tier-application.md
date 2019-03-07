@@ -129,3 +129,25 @@ So far we have exposed the frontend using `NodePort`, but accessing the service 
 
 `minikube addons enable ingress`
 
+Delete the previous nodeport service as it will share the name with the Ingress one.
+```bash
+kubectl delete -f services/web-service-nodeport.yaml
+```
+
+Add a new Ingress service and controller.
+```bash
+kubectl apply -f services/web-service-ingress.yaml
+kubectl apply -f ingress/powerapp-ingress.yaml
+```
+
+Append to your machine `/etc/hosts` a line `powerapp.kubeprimer.local` the minikube ip.
+After the update will appear like 
+
+```
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+[...]
+192.168.99.101  powerapp.kubeprimer.local
+```
+
+Visit http://powerapp.kubeprimer.local on your browser. Enjoy.
