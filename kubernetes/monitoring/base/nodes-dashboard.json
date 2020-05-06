@@ -354,7 +354,7 @@
             "value": "10.0.2.15:9100"
           }
         ],
-        "query": "label_values(node_boot_time_seconds{app=\"node-exporter\"},  instance)",
+        "query": "label_values(node_boot_time_seconds{job=\"node-exporter\"},  instance)",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
