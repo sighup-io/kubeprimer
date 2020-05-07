@@ -130,3 +130,8 @@ So far we have exposed the frontend using `NodePort`, but accessing the service 
 
 `minikube addons enable ingress`
 
+We can apply the ingress as follows:
+
+```bash
+kubectl apply -f  ingress/powerapp-ingress.yaml
+```
