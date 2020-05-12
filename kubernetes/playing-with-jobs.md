@@ -15,8 +15,6 @@ pi-d9s7s   1/1       Running   0          <invalid>
 
 The pod will show up as running until the job gets to completion, after that the process will end and kubernetes will consider the job as concluded.
 
-To see completed jobs you can use: `kubectl get pods --show-all`
-
 ## Parallelism
 
 Parallelism on jobs can be achieved setting `.spec.completions` and `.spec.parallelism`. Playing with these two flags will let us tune how many times the job should run (in case we want additional workers) and how many concurrent jobs should be executed at a time.
