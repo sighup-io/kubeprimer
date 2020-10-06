@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: debug
+  labels:
+    app: powerapp-web
+  name: powerapp-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: powerapp-web
+  template:
+    metadata:
+      labels:
+        app: powerapp-web
+    spec:
+      containers:
+        - name: powerapp-web
+          image: sighup/powerapp-frontend
+          env:
+            - name: BACKEND_HOST
+              value: powerapp-backend-service
+            # How to use a configmap
+            - name: COMPANY
+              valueFrom:
+                configMapKeyRef:
+                  name: web
+                  key: COMPANY
+            # How to use a Secret
+            - name: SOME_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: web
+                  key: some-passwrd
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      restartPolicy: Always

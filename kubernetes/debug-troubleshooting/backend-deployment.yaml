@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: debug
+  labels:
+    app: powerapp-backend
+  name: powerapp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: powerapp-backend
+  template:
+    metadata:
+      labels:
+        app: powerapp-backend
+    spec:
+      containers:
+        - name: powerapp-backend
+          image: sighup/powerapp-backend
+          env:
+            - name: MONGO_HOST
+              value: powerapp-mongodb-service
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      restartPolicy: Always
