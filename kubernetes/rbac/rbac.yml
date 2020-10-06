@@ -1,0 +1,30 @@
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: debug-admin-deployments
+  namespace: debug
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get","create","list","update"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: debug
+  name: debug-admin-deployments
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: debug-admin-deployments-binding
+  namespace: debug
+subjects:
+- kind: ServiceAccount
+  name: debug-admin-deployments
+  namespace: debug
+roleRef:
+  kind: Role
+  name: debug-admin-deployments
+  apiGroup: rbac.authorization.k8s.io
