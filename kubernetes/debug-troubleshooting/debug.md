@@ -8,11 +8,11 @@ Deploy everything with the following command:
 
     kubectl apply -f .
 
+    kubectl config set-context --current --namespace=debug
+
     kubectl apply -f ../volumes/kubeprimer-db-persistentvolumeclaim.yaml
 
     kubectl apply -f ../configmaps/powerapp-configmap.yaml
-
-    kubectl config set-context --current --namespace=debug
 
 ```
 
