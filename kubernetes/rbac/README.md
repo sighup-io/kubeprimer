@@ -17,5 +17,5 @@ Exercise: now create a serviceAccount by yourself with the following capabilitie
 test if everything is fine using:
 
 ```bash
-kubectl can-i <verb> <resource> --as=system:serviceaccount:<namespace>:<serviceAccountName> -n <namespace>
+kubectl auth can-i <verb> <resource> --as=system:serviceaccount:<namespace>:<serviceAccountName> -n <namespace>
 ```
